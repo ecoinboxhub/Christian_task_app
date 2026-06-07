@@ -3,6 +3,8 @@
 buildscript {
     
     repositories {
+        mavenLocal()
+        maven { url "file:///C:/Users/ibrah/.m2/repository" }
         google()
         mavenCentral()
     }
@@ -19,23 +21,10 @@ apply from: "variables.gradle"
 
 allprojects {
     repositories {
+        mavenLocal()
+        maven { url "file:///C:/Users/ibrah/.m2/repository" }
         google()
         mavenCentral()
-    }
-}
-
-subprojects {
-    afterEvaluate { project ->
-        if (project.hasProperty('repositories')) {
-            project.repositories.all { repo ->
-                if (repo instanceof org.gradle.api.artifacts.repositories.UrlArtifactRepository) {
-                    def url = repo.getUrl()
-                    if (url != null && url.getScheme() == 'http') {
-                        repo.allowInsecureProtocol = true
-                    }
-                }
-            }
-        }
     }
 }
 
