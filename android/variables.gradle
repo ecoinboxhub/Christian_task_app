@@ -1,0 +1,16 @@
+ext {
+    // Android configuration
+    compileSdkVersion = 34
+    targetSdkVersion = 34
+    minSdkVersion = 23
+    buildToolsVersion = '34.0.0'
+    ndkVersion = '26.1.10909125'
+    
+    // AndroidX versions
+    androidxAppCompatVersion = '1.7.0'
+    androidxCoordinatorLayoutVersion = '1.2.0'
+    coreSplashScreenVersion = '1.0.1'
+    junitVersion = '4.13.2'
+    androidxJunitVersion = '1.2.1'
+    androidxEspressoCoreVersion = '3.6.1'
+}
