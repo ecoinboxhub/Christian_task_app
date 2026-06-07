@@ -1,0 +1,48 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Android
+android/
+build/
+*.iml
+.gradle/
+
+# iOS
+ios/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+*.xccheckout
+*.moved-aside
+DerivedData/
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace/
+
+# Editor directories and files
+.vscode/*
+!.vscode/settings.json
+.idea/
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Testing
+coverage/
+
+# Expo
+.expo/
+
+# Logs
+*.log
