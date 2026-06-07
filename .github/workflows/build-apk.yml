@@ -26,6 +26,7 @@ jobs:
         with:
           api-level: 34
           build-tools: '34.0.0'
+          platforms: 'android-34'
       
       - name: Make Gradle wrapper executable
         run: chmod +x android/gradlew
@@ -45,6 +46,7 @@ jobs:
       
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: believers-task-flow-apk
           path: android/app/build/outputs/apk/release/app-release.apk
