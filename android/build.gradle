@@ -24,6 +24,21 @@ allprojects {
     }
 }
 
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('repositories')) {
+            project.repositories.all { repo ->
+                if (repo instanceof org.gradle.api.artifacts.repositories.UrlArtifactRepository) {
+                    def url = repo.getUrl()
+                    if (url != null && url.getScheme() == 'http') {
+                        repo.allowInsecureProtocol = true
+                    }
+                }
+            }
+        }
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
