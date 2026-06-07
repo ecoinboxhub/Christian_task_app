@@ -4,11 +4,15 @@ node_modules/
 # Environment variables
 .env
 
-# Android
-android/
-build/
-*.iml
-.gradle/
+# Android - keep gradle wrapper files
+!android/gradlew
+!android/gradle/wrapper/gradle-wrapper.jar
+!android/gradle/wrapper/gradle-wrapper.properties
+
+# Android build outputs
+android/build/
+android/app/build/
+android/.gradle/
 
 # iOS
 ios/
