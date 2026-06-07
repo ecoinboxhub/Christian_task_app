@@ -1,0 +1,471 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f6fa;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+#app {
+    max-width: 480px;
+    margin: 0 auto;
+    min-height: 100vh;
+    background-color: #f5f6fa;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+.app-header {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.app-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.app-header p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.main-content {
+    padding: 16px;
+    padding-bottom: 80px;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* Task Manager */
+.task-stats {
+    background: #3498db;
+    color: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.task-stats h3 {
+    font-size: 18px;
+    margin-bottom: 4px;
+}
+
+.task-stats p {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+.filter-tab {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    background: #fff;
+    color: #7f8c8d;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.filter-tab.active {
+    background: #3498db;
+    color: white;
+}
+
+/* Task Item */
+.task-item {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.task-item.completed .task-title {
+    text-decoration: line-through;
+    color: #95a5a6;
+}
+
+.task-checkbox {
+    width: 28px;
+    height: 28px;
+    border: 2px solid #bdc3c7;
+    border-radius: 14px;
+    margin-right: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.task-checkbox.checked {
+    background: #27ae60;
+    border-color: #27ae60;
+}
+
+.task-checkbox.checked::after {
+    content: '✓';
+    color: white;
+    font-size: 18px;
+}
+
+.task-info {
+    flex: 1;
+}
+
+.task-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.task-category {
+    font-size: 12px;
+    color: #7f8c8d;
+    margin-top: 4px;
+}
+
+.priority-badge {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    margin-top: 4px;
+}
+
+.priority-high { background: #e74c3c; }
+.priority-medium { background: #f39c12; }
+.priority-low { background: #27ae60; }
+
+.task-actions {
+    margin-left: 8px;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 8px;
+}
+
+/* Add Task Form */
+.add-task-form {
+    background: white;
+    padding: 16px;
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.add-task-form h3 {
+    margin-bottom: 12px;
+}
+
+.task-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #bdc3c7;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    font-size: 14px;
+}
+
+.priority-options {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.priority-btn {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #bdc3c7;
+    border-radius: 6px;
+    background: white;
+    cursor: pointer;
+}
+
+.priority-btn.active {
+    background: #e67e22;
+    border-color: #e67e22;
+    color: white;
+}
+
+.add-btn {
+    width: 100%;
+    padding: 12px;
+    background: #27ae60;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.add-btn:hover {
+    background: #219a52;
+}
+
+/* Verse Display */
+.verse-card {
+    background: #f8f9fa;
+    border-left: 4px solid #3498db;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.verse-card h3 {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.verse-card .verse-text {
+    font-size: 16px;
+    font-style: italic;
+    color: #2c3e50;
+    line-height: 1.8;
+    margin-bottom: 8px;
+}
+
+.verse-card .verse-ref {
+    font-weight: 600;
+    color: #3498db;
+    text-align: right;
+}
+
+/* Prayer Balance */
+.prayer-card {
+    background: #fff3e0;
+    border-left: 4px solid #e67e22;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.prayer-card h3 {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.prayer-balance {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.prayer-balance .balance {
+    font-size: 48px;
+    font-weight: bold;
+    color: #e67e22;
+}
+
+.prayer-balance .balance-label {
+    font-size: 12px;
+    color: #95a5a6;
+    text-transform: uppercase;
+}
+
+.prayer-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.prayer-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #e67e22;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.prayer-btn.deduct {
+    background: #d35400;
+}
+
+/* Bible Study */
+.study-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.study-item {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 16px;
+}
+
+.study-item h4 {
+    color: #2c3e50;
+    margin-bottom: 4px;
+}
+
+.study-item .reference {
+    color: #9b59b6;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.study-item .duration {
+    color: #e67e22;
+    font-size: 12px;
+}
+
+.study-item .questions {
+    color: #7f8c8d;
+    font-size: 12px;
+    margin-top: 8px;
+    line-height: 1.6;
+}
+
+/* Task Balance */
+.balance-card {
+    background: #e8f6f3;
+    border-left: 4px solid #1abc9c;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.balance-card h3 {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.progress-container {
+    background: #dfe6e9;
+    border-radius: 10px;
+    height: 24px;
+    overflow: hidden;
+    margin-bottom: 12px;
+}
+
+.progress-bar {
+    background: #1abc9c;
+    height: 100%;
+    transition: width 0.3s ease;
+}
+
+.progress-high {
+    background: #27ae60 !important;
+}
+
+.balance-text {
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #1abc9c;
+}
+
+.hint-text {
+    color: #7f8c8d;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 12px;
+}
+
+/* Bottom Nav */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-top: 1px solid #e0e0e0;
+    padding: 8px 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.nav-btn {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.nav-btn.active {
+    background: #f0f4f8;
+}
+
+.nav-icon {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 4px;
+    opacity: 0.7;
+}
+
+.nav-btn.active .nav-icon {
+    opacity: 1;
+}
+
+.nav-label {
+    display: block;
+    font-size: 10px;
+    color: #7f8c8d;
+}
+
+.nav-btn.active .nav-label {
+    color: #3498db;
+    font-weight: 600;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #95a5a6;
+}
+
+.empty-state p {
+    font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    #app {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+    }
+}
