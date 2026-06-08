@@ -31,27 +31,18 @@ jobs:
           packages: |
             platforms;android-34
             build-tools;34.0.0
-      
-      - name: Make Gradle wrapper executable
-        run: chmod +x android/gradlew
-      
+          
       - name: Build Release APK
         run: |
           cd android
+          chmod +x gradlew
           ./gradlew clean
-          ./gradlew assembleRelease --no-daemon --stacktrace
+          ./gradlew assembleRelease --no-daemon
         env:
           CI: true
       
-      - name: Get version
-        id: version
-        run: |
-          VERSION=$(grep -oP 'versionName "\K[^"]+' android/app/build.gradle)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-      
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
-        if: always()
         with:
           name: believers-task-flow-apk
           path: android/app/build/outputs/apk/release/app-release.apk
