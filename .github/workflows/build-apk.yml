@@ -5,6 +5,9 @@ on:
     branches:
       - main
   workflow_dispatch:
+  create:
+    tags:
+      - v*
 
 jobs:
   build:
@@ -37,12 +40,6 @@ jobs:
           ./gradlew assembleRelease --no-daemon --stacktrace
         env:
           CI: true
-      
-      - name: Get version
-        id: version
-        run: |
-          VERSION=$(grep -oP 'versionName "\K[^"]+' android/app/build.gradle)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
       
       - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
