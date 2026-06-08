@@ -50,3 +50,5 @@ coverage/
 
 # Logs
 *.log
+android/gradle/wrapper/gradle-8.14.3-bin.zip
+android/local.properties
