@@ -52,3 +52,6 @@ coverage/
 *.log
 android/gradle/wrapper/gradle-8.14.3-bin.zip
 android/local.properties
+android/capacitor-cordova-android-plugins/build/
+android/app/build/
+android/build/
