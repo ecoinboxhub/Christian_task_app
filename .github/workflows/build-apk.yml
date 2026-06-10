@@ -1,17 +1,46 @@
-name: Build Android APK
+name: Build Android APK & Deploy Web App
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  create:
     tags:
       - v*
+  workflow_dispatch:
 
 jobs:
-  build:
+  deploy-web:
+    name: Deploy Web App to GitHub Pages
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    if: github.ref == 'refs/heads/main'
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'web'
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  build-apk:
+    name: Build Android APK
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
     
     steps:
       - name: Checkout code
@@ -28,9 +57,7 @@ jobs:
         uses: android-actions/setup-android@v3
         with:
           cmdline-tools-version: '11.0'
-          packages: |
-            platforms;android-34
-            build-tools;34.0.0
+          packages: 'platforms;android-34 build-tools;34.0.0'
           
       - name: Build Release APK
         run: |
@@ -51,7 +78,25 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
         with:
-          files: android/app/build/outputs/apk/release/app-release.apk
+          files: |
+            android/app/build/outputs/apk/release/app-release.apk
           generate_release_notes: true
+          body: |
+            ## Believers Task Flow Release
+            
+            ### Features
+            - ✅ Task Management with Scheduling
+            - 📅 Daily/Weekly/Monthly Task Scheduler
+            - 🔔 Alarm & Notification System (10 sounds)
+            - 🤖 AI Spiritual Activity Suggestions
+            - 🎯 Habit Tracker with Streaks
+            - 💡 Smart Reminder System
+            - 📖 Scripture & Encouragement Messages
+            - 🙏 Prayer Balance Tracker
+            - 📜 Bible Study Planner
+            - ⚖️ Christian Task Balance
+            
+            ### Installation
+            Download the APK and install on your Android device.
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

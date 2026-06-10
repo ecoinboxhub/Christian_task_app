@@ -1,13 +1,9 @@
-/**
- * Main App Component
- */
 import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   View,
   Text,
   StyleSheet,
-  FlatList,
   TouchableOpacity,
   Platform,
   StatusBar,
@@ -17,20 +13,45 @@ import VerseDisplay from './components/VerseDisplay';
 import PrayerBalance from './components/PrayerBalance';
 import BibleStudyPlanner from './components/BibleStudyPlanner';
 import TaskBalance from './components/TaskBalance';
+import TaskScheduler from './components/TaskScheduler';
+import SmartReminder from './components/SmartReminder';
+import HabitTracker from './components/HabitTracker';
+import {NotificationService} from './services/notificationService';
+
+const TABS = [
+  {key: 'tasks', icon: '✅', label: 'Tasks'},
+  {key: 'scheduler', icon: '📅', label: 'Schedule'},
+  {key: 'habits', icon: '🎯', label: 'Habits'},
+  {key: 'verse', icon: '📖', label: 'Verse'},
+  {key: 'prayer', icon: '🙏', label: 'Prayer'},
+  {key: 'study', icon: '📜', label: 'Study'},
+  {key: 'reminders', icon: '💡', label: 'Remind'},
+  {key: 'balance', icon: '⚖️', label: 'Balance'},
+];
 
 const App = () => {
   const [activeTab, setActiveTab] = useState('tasks');
+
+  useEffect(() => {
+    NotificationService.initialize();
+  }, []);
 
   const renderContent = () => {
     switch (activeTab) {
       case 'tasks':
         return <TaskManager />;
+      case 'scheduler':
+        return <TaskScheduler />;
+      case 'habits':
+        return <HabitTracker />;
       case 'verse':
         return <VerseDisplay />;
       case 'prayer':
         return <PrayerBalance />;
       case 'study':
         return <BibleStudyPlanner />;
+      case 'reminders':
+        return <SmartReminder />;
       case 'balance':
         return <TaskBalance />;
       default:
@@ -41,43 +62,18 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#f5f6fa" />
-      <View style={styles.header}>
-        <Text style={styles.headerTitle}>
-          {Platform.OS === 'ios' ? '✝️' : ''} Believers Task Flow
-        </Text>
-        <Text style={styles.headerSubtitle}>
-          Growing in faith, one task at a time
-        </Text>
-      </View>
       <View style={styles.content}>
         {renderContent()}
       </View>
       <View style={styles.bottomNav}>
-        <NavButton
-          active={activeTab === 'tasks'}
-          onPress={() => setActiveTab('tasks')}
-          icon="✅"
-          label="Tasks" />
-        <NavButton
-          active={activeTab === 'verse'}
-          onPress={() => setActiveTab('verse')}
-          icon="📖"
-          label="Verse" />
-        <NavButton
-          active={activeTab === 'prayer'}
-          onPress={() => setActiveTab('prayer')}
-          icon="🙏"
-          label="Prayer" />
-        <NavButton
-          active={activeTab === 'study'}
-          onPress={() => setActiveTab('study')}
-          icon="📜"
-          label="Study" />
-        <NavButton
-          active={activeTab === 'balance'}
-          onPress={() => setActiveTab('balance')}
-          icon="⚖️"
-          label="Balance" />
+        {TABS.map(tab => (
+          <NavButton
+            key={tab.key}
+            active={activeTab === tab.key}
+            onPress={() => setActiveTab(tab.key)}
+            icon={tab.icon}
+            label={tab.label} />
+        ))}
       </View>
     </SafeAreaView>
   );
@@ -98,21 +94,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f5f6fa',
   },
-  header: {
-    backgroundColor: '#3498db',
-    padding: 16,
-    paddingTop: Platform.OS === 'ios' ? 50 : 16,
-  },
-  headerTitle: {
-    fontSize: 22,
-    fontWeight: 'bold',
-    color: '#fff',
-  },
-  headerSubtitle: {
-    fontSize: 14,
-    color: 'rgba(255,255,255,0.8)',
-    marginTop: 4,
-  },
   content: {
     flex: 1,
     padding: 0,
@@ -126,7 +107,7 @@ const styles = StyleSheet.create({
   },
   navButton: {
     flex: 1,
-    paddingVertical: 12,
+    paddingVertical: 8,
     alignItems: 'center',
   },
   navButtonActive: {
@@ -135,15 +116,15 @@ const styles = StyleSheet.create({
     borderTopColor: '#3498db',
   },
   navIcon: {
-    fontSize: 20,
-    marginBottom: 4,
+    fontSize: 16,
+    marginBottom: 2,
     opacity: 0.7,
   },
   navIconActive: {
     opacity: 1,
   },
   navLabel: {
-    fontSize: 10,
+    fontSize: 8,
     color: '#7f8c8d',
   },
   navLabelActive: {

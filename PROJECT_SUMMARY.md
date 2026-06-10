@@ -2,122 +2,147 @@
 
 ## What Was Built
 
-A complete React Native mobile application with the following features:
+A complete Christian faith-based task management application with mobile (React Native + Capacitor) and web (SPA + PWA) versions, AI-powered suggestions, smart reminders, and habit tracking.
 
-### Core Features
-1. **Task Management**
-   - Add, complete, delete, and update tasks
-   - Task filtering (All, Active, Completed)
-   - Priority levels (Low, Medium, High)
-   - Categories for organization
-   - Local storage persistence
+## Version 2.0 Features
 
-2. **Daily Bible Verse Provider**
-   - AI-generated verses using GROQ LLM
-   - Beautiful display with references
-   - Option to refresh for a new verse
+### Task Scheduler (New)
+- Create tasks with specific dates and digital times (24h format)
+- Daily, weekly, and monthly recurrence patterns
+- Weekly day selection (Sun-Sat)
+- Monthly support (specific day or last day)
+- Schedule statistics and next occurrence display
 
-3. **Prayer Balance Tracker**
-   - Track prayer commitments
-   - Add or deduct prayer amounts
-   - Visual balance display
+### Alarm & Notification System (New)
+- 10 distinct alarm sounds generated via Web Audio API
+- Gentle Chime, Morning Bell, Soft Harp, Worship Tune, Prayer Call, Digital Alarm, Faith Alert, Gentle Nudge, Hallelujah, Silent mode
+- Scheduled notifications with web API integration
+- Pre-reminders (configurable minutes before)
+- Snooze functionality (5/10/15/30 min)
+- Recurring alarm support for recurring tasks
+- Notification history log
 
-4. **Bible Study Planner**
-   - Plan and track study sessions
-   - AI-generated study topics
-   - Duration tracking
-   - Question prompts for reflection
+### AI-Powered Suggestions (Enhanced)
+- Spiritual activity recommendations
+- Bible reading plans (7-day)
+- Prayer schedule suggestions
+- Daily devotion plans
+- Faith-building activity ideas
+- Habit suggestions with scripture verses
+- All with GROQ LLM integration + offline fallback defaults
 
-5. **Christian Task Balance**
-   - Visual progress tracker
-   - Percentage completion display
-   - Clear completed tasks option
+### Habit Tracker (New)
+- Create habits with categories (prayer, study, worship, service, fellowship)
+- Daily/weekly/monthly frequency
+- Streak tracking (consecutive day count)
+- Daily completion with visual feedback
+- AI-powered habit suggestions
+- Per-habit reminder alarms
 
-### Technical Implementation
+### Smart Reminder System (New)
+- Re-engagement for incomplete tasks
+- Scripture-based reminder messages
+- Daily encouragement notifications
+- Bulk re-engage for all incomplete tasks
+- Configurable reminder settings (time, sound, snooze)
 
-- **Offline-First**: All data stored locally using React Native Async Storage
-- **GROQ Integration**: AI-powered recommendations and verse generation
-- **Mobile-First UI**: Colorful Christian-themed design with emojis
-- **Cross-Platform**: iOS and Android ready
+### Web App (Enhanced)
+- Full feature parity with React Native version
+- PWA manifest for installability
+- Responsive mobile-first design
+- Web Audio API for alarm sounds
+- Web Notification API integration
+
+### Backend Server (New)
+- Express.js REST API
+- Web push notification support
+- Static web app serving
+- CORS-enabled
 
 ## Project Structure
 
 ```
 Christian_App/
 ├── src/
-│   ├── components/       # React components (7 files)
-│   ├── store/           # Data persistence layer
-│   └── services/        # API services
-├── android/             # Android configuration
-├── ios/                 # iOS configuration
-├── package.json         # Dependencies
-├── README.md            # Main documentation
-├── BUILD_INSTRUCTIONS.md # Detailed build guide
-└── PROJECT_SUMMARY.md   # This file
+│   ├── components/           # 9 React components
+│   │   ├── TaskManager.js
+│   │   ├── TaskItem.js
+│   │   ├── TaskScheduler.js     # NEW
+│   │   ├── HabitTracker.js      # NEW
+│   │   ├── SmartReminder.js     # NEW
+│   │   ├── VerseDisplay.js
+│   │   ├── PrayerBalance.js
+│   │   ├── BibleStudyPlanner.js
+│   │   └── TaskBalance.js
+│   ├── store/
+│   │   └── taskStore.js
+│   └── services/
+│       ├── groqService.js       # Enhanced (8 AI methods)
+│       ├── schedulerService.js  # NEW
+│       ├── notificationService.js# NEW
+│       └── audioService.js      # NEW
+├── web/
+│   ├── index.html
+│   ├── app.js
+│   ├── styles.css
+│   └── manifest.json            # NEW
+├── server/                      # NEW
+│   ├── package.json
+│   └── index.js
+├── PRD.md                       # NEW
+├── SWR.md                       # NEW
+├── PERSONA.md                   # NEW
+├── status.md
+├── PROJECT_SUMMARY.md
+├── android/
+├── .github/workflows/
+└── package.json
 ```
+
+## Count
+
+| Metric | Count |
+|--------|-------|
+| React Components | 9 |
+| Services | 4 |
+| AI Methods | 8 |
+| Alarm Sounds | 10 |
+| App Tabs | 8 |
+| User Personas | 5 |
+| Documentation Files | 6 |
 
 ## Repository
 
 **GitHub**: https://github.com/ecoinboxhub/Christian_task_app.git
 
-**Branch**: main
+## Deployment
 
-## How to Build APK
+### Web App
+- **Platform:** GitHub Pages
+- **Trigger:** Push to main branch
+- **URL:** (auto-generated after first deploy)
 
-### Prerequisites
-- Node.js 18+
-- Android SDK (API 23+)
-- JDK 17+
+### Android APK
+- **Platform:** GitHub Releases
+- **Trigger:** Push tag (e.g., `v1.0.0`)
+- **Artifact:** `app-release.apk`
 
-### Build Steps
+### Backend
+- **Stack:** Node.js + Express
+- **Deploy to:** Render, Railway, or any Node.js host
+- **Command:** `cd server && npm start`
 
-1. Install dependencies:
-```bash
-npm install
-```
+## Build Status
 
-2. Build Android APK:
-```bash
-cd android
-./gradlew assembleDebug
-```
-
-3. APK location:
-```
-android/app/build/outputs/apk/debug/app-debug.apk
-```
-
-## Next Steps
-
-To run the app:
-
-1. Run `npm install` to install dependencies
-2. For Android: `npx react-native run-android`
-3. For iOS (Mac only): `npx react-native run-ios`
-
-## Features Ready for Development
-
-✅ Task CRUD operations
-✅ Filtering (All, Active, Completed)
-✅ Daily Bible Verse with AI
-✅ Prayer balance tracker
-✅ Bible study planner
-✅ Christian task balance
-✅ GROQ LLM integration
-✅ Offline-first with local storage
-✅ Mobile-first colorful Christian UI
-✅ APK build configuration
-
-## Environment Variables
-
-Add your GROQ API key to `.env`:
-```
-GROQ_API_KEY=your-groq-api-key-here
-```
-
-Get your key from: https://console.groq.com/
-
----
-
-**Status**: Complete and ready for build and testing
-**Last Updated**: June 7, 2026
+- [x] Task Management (CRUD)
+- [x] Task Scheduling (Daily/Weekly/Monthly)
+- [x] Alarm System (10 sounds, snooze, recurring)
+- [x] AI Suggestions (8 categories)
+- [x] Habit Tracker (streaks, categories)
+- [x] Smart Reminders (scripture, encouragement)
+- [x] Prayer Balance
+- [x] Bible Study Planner
+- [x] Web App (full parity)
+- [x] Backend Server
+- [x] CI/CD Pipeline
+- [x] Documentation (PRD, SWR, Persona)

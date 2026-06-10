@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Believers Task Flow ✝️</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Flash Effect Container -->
+    <div id="flash-effect" class="flash-effect"></div>
+    
+    <!-- Main App -->
+    <div id="app" class="app-container">
+        <!-- Header with Background -->
+        <div class="header-background">
+            <div class="header-content">
+                <div class="header-icon">✝️</div>
+                <h1>Believers Task Flow</h1>
+                <p>Growing in faith, one task at a time</p>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div id="content-area" class="content-area"></div>
+        </div>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <button class="nav-btn active" data-tab="tasks">
+                <span class="nav-icon">✅</span>
+                <span class="nav-label">Tasks</span>
+            </button>
+            <button class="nav-btn" data-tab="verse">
+                <span class="nav-icon">📖</span>
+                <span class="nav-label">Verse</span>
+            </button>
+            <button class="nav-btn" data-tab="prayer">
+                <span class="nav-icon">🙏</span>
+                <span class="nav-label">Prayer</span>
+            </button>
+            <button class="nav-btn" data-tab="study">
+                <span class="nav-icon">📜</span>
+                <span class="nav-label">Study</span>
+            </button>
+            <button class="nav-btn" data-tab="balance">
+                <span class="nav-icon">⚖️</span>
+                <span class="nav-label">Balance</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Floating Action Button -->
+    <button id="fab" class="fab" onclick="showAddMenu()">
+        <span class="fab-icon">+</span>
+    </button>
+
+    <script src="app.js"></script>
+</body>
+</html>

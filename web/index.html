@@ -2,20 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Believers Task Flow ✝️</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
 </head>
 <body>
-    <!-- Flash Effect Container -->
     <div id="flash-effect" class="flash-effect"></div>
     
-    <!-- Main App -->
     <div id="app" class="app-container">
-        <!-- Header with Background -->
         <div class="header-background">
             <div class="header-content">
                 <div class="header-icon">✝️</div>
@@ -24,40 +23,25 @@
             </div>
         </div>
 
-        <!-- Main Content Area -->
         <div class="main-content">
             <div id="content-area" class="content-area"></div>
         </div>
 
-        <!-- Bottom Navigation -->
-        <nav class="bottom-nav">
-            <button class="nav-btn active" data-tab="tasks">
-                <span class="nav-icon">✅</span>
-                <span class="nav-label">Tasks</span>
-            </button>
-            <button class="nav-btn" data-tab="verse">
-                <span class="nav-icon">📖</span>
-                <span class="nav-label">Verse</span>
-            </button>
-            <button class="nav-btn" data-tab="prayer">
-                <span class="nav-icon">🙏</span>
-                <span class="nav-label">Prayer</span>
-            </button>
-            <button class="nav-btn" data-tab="study">
-                <span class="nav-icon">📜</span>
-                <span class="nav-label">Study</span>
-            </button>
-            <button class="nav-btn" data-tab="balance">
-                <span class="nav-icon">⚖️</span>
-                <span class="nav-label">Balance</span>
-            </button>
+        <nav class="bottom-nav" id="bottom-nav">
+            <button class="nav-btn active" data-tab="tasks"><span class="nav-icon">✅</span><span class="nav-label">Tasks</span></button>
+            <button class="nav-btn" data-tab="scheduler"><span class="nav-icon">📅</span><span class="nav-label">Schedule</span></button>
+            <button class="nav-btn" data-tab="habits"><span class="nav-icon">🎯</span><span class="nav-label">Habits</span></button>
+            <button class="nav-btn" data-tab="verse"><span class="nav-icon">📖</span><span class="nav-label">Verse</span></button>
+            <button class="nav-btn" data-tab="prayer"><span class="nav-icon">🙏</span><span class="nav-label">Prayer</span></button>
+            <button class="nav-btn" data-tab="study"><span class="nav-icon">📜</span><span class="nav-label">Study</span></button>
+            <button class="nav-btn" data-tab="reminders"><span class="nav-icon">💡</span><span class="nav-label">Remind</span></button>
+            <button class="nav-btn" data-tab="balance"><span class="nav-icon">⚖️</span><span class="nav-label">Balance</span></button>
         </nav>
     </div>
 
-    <!-- Floating Action Button -->
-    <button id="fab" class="fab" onclick="showAddMenu()">
-        <span class="fab-icon">+</span>
-    </button>
+    <button id="fab" class="fab" onclick="quickAdd()"><span class="fab-icon">+</span></button>
+
+    <div id="toast-container" class="toast-container"></div>
 
     <script src="app.js"></script>
 </body>

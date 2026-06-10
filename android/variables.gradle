@@ -1,8 +1,8 @@
 ext {
     // Android configuration
-    compileSdkVersion = 34
-    targetSdkVersion = 34
-    minSdkVersion = 23
+    compileSdkVersion = 36
+    targetSdkVersion = 36
+    minSdkVersion = 24
     buildToolsVersion = '34.0.0'
     ndkVersion = '26.1.10909125'
     
